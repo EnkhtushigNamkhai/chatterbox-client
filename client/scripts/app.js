@@ -32,13 +32,14 @@ var app = {
     });
   }, 
   
-  fetch: function() {
+  fetch: function(constraint = {order: '-updatedAt', limit: 50}) {
     $.ajax({
       // This is the url you should use to communicate with the parse API server.
       // possible 'this' binding issue  
       url: this.server,
       type: 'GET',
-      data: {order: '-updatedAt', limit: 50},
+      data: constraint,
+// {order: '-updatedAt', limit: 50}
 
       success: function (data) {
         //only add the objects that we didn't have before.
@@ -173,9 +174,9 @@ $(document).ready(function() {
    
     //clear the chat
     app.clearMessages();
-    // constraint = {order: '-updatedAt', limit: 50};
+    constraint = {"where": {"roomname": currentRoom}};
     
-    // app.fetch(constraint);
+    app.fetch(constraint);
 
     //get request with only roomname as parameter
     

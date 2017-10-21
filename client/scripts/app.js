@@ -174,7 +174,7 @@ $(document).ready(function() {
    
     //clear the chat
     app.clearMessages();
-    constraint = {"where": {"roomname": currentRoom}};
+    constraint = {'where': {'roomname': currentRoom}};
     
     app.fetch(constraint);
 

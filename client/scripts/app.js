@@ -10,21 +10,23 @@ var app = {
   server: 'http://parse.sfm6.hackreactor.com/chatterbox/classes/messages',  
 
   send: function(message) {
-
     $.ajax({
-      // This is the url you should use to communicate with the parse API server.
-      url: this.server,
+      url: app.server,
       type: 'POST',
       data: message,
+      // dataType: 'application/json',
       contentType: 'application/json',
       success: function (data) {
-        console.log('chatterbox: Message sent');
+
+        console.log('chatterbox: Message sent', data);
+
       },
       error: function (data) {
         // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
         console.error('chatterbox: Failed to send message', data);
       }
     });
+  
   }, 
   
   fetch: function() {
@@ -33,7 +35,9 @@ var app = {
       // possible 'this' binding issue  
       url: this.server,
       type: 'GET',
+      data: {order: '-updatedAt', limit: 50},
       success: function (data) {
+        console.log(data);
         var msgs = data.results;
         for (var i = 0; i < msgs.length; i++) {
           var obj = msgs[i];
@@ -62,9 +66,9 @@ var app = {
     var roomname = message.roomname;
 
         
-    var $chatBox = $('<div class = "chatBox"><div>');
-    var $text = $('<div class="messageText"><div>').text(message.text);
-    var $username = $('<a class="person"><a>').text(message.username);
+    var $chatBox = $('<div class = "chat"></div>');
+    var $text = $('<div class="messageText"></div>').text(message.text);
+    var $username = $('<a href = "#userNameClicked" class="person"></a>').text(message.username);
     $chatBox.append($username);
     $chatBox.append($text);
     $('#chats').append($chatBox); 
@@ -76,28 +80,32 @@ var app = {
   },
 
   handleUsernameClick: function() {
-  //should add a friend upon clicking the username
+    $('.chat').on( 'click', function() {
+      var name = $(this).find('.person');
+      // var name = $(this).text();
+      console.log(name);  
 
+    });
   },
-
   handleSubmit: function() {
-    var userName = $('#userNameInput').val();
-    var content = $('#contentInput').val();
-    // alert(userName.toUpperCase() + 'says' + '\n' + content);
-    
-    //create the message object to pass into send(message)
+    $('#newPostSubmit').on('click', function() {
+      var userName = $('#userNameInput').val();
+      var content = $('#contentInput').val();
+      // alert(userName.toUpperCase() + 'says' + '\n' + content);
+      
+      //create the message object to pass into send(message)
 
-    var message = {
-      username: 'enki',
-      text: 'trying to see what it fetches',
-      roomname: '6thfloor'
-    };
-    //post request with userName and content
-    console.log('send is getting called');
-    app.send(message);
-    app.fetch();
+      var message = {
+        username: 'enki',
+        text: 'trying to see what it fetches',
+        roomname: '6thfloor'
+      };
+      //post request with userName and content
+      console.log('send is getting called', JSON.stringify(message));
+      app.send(JSON.stringify(message));
+      app.fetch();
+    }); 
   }
-
 }; 
 
 
@@ -106,7 +114,7 @@ $(document).ready(function() {
   app.fetch();
     
 
-  $('#newPostSubmit').on('click', app.handleSubmit);
+  
 
 
   // app.fetch();

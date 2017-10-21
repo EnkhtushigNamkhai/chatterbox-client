@@ -3,16 +3,28 @@ body {
     text-align: center;
     padding: 0 25px;
     font-family: arial, sans-serif;
+    background-color: black;
 }
 
-#main, #chats {
-    width: 500px;
+#main {
+    width: 70%;
     margin: auto;
     text-align: left;
     background: white;
     padding: 50px 60px;
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
+    float:right;
+background-color: green;
+    height: 100vh;
+}
+
+#chats {
+    margin: 20px;
+    width: ;
+    height: 100%;
+    background-color: grey;
+    overflow: scroll;
 }
 
 #main h1 {
@@ -54,7 +66,7 @@ form {
 
 form input[type=text] {
     margin-right: 10px;
-    width: 70%;
+    width: 60%;
     font-size: 12px;
     padding: 5px;
 }
@@ -63,6 +75,7 @@ form input[type=text] {
     padding: 5px;
     margin-bottom: 5px;
     background-color: #eee;
+    
 }
 
 .chat .username {
@@ -89,10 +102,18 @@ form input[type=text] {
 }
 
 .chatBox {
-    
+    height: 50px;
 }
 
 .person {
 
 }
+
+.channelCol {
+    float: left;
+    width: 100px;
+    background-color: blue;
+}
+
+
 

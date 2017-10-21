@@ -1,9 +1,13 @@
 // YOUR CODE HERE:
+var friendList = [];
+var roomNameList = [];
+var currentRoom = 'Home';
 var app = {
   namesOfRooms: {}, 
   
   init: function () {
     app.handleSubmit();
+    console.log('calling handleUsernameClick');
     app.handleUsernameClick();
   }, 
   
@@ -26,7 +30,6 @@ var app = {
         console.error('chatterbox: Failed to send message', data);
       }
     });
-  
   }, 
   
   fetch: function() {
@@ -36,21 +39,17 @@ var app = {
       url: this.server,
       type: 'GET',
       data: {order: '-updatedAt', limit: 50},
+
       success: function (data) {
+        //only add the objects that we didn't have before.
         console.log(data);
         var msgs = data.results;
         for (var i = 0; i < msgs.length; i++) {
           var obj = msgs[i];
-          app.renderMessage(msgs[i]); 
-          // if (!Object.keys(namesOfRooms).includes(msgs[i].roomname)) {
-          //   namesOfRooms[msgs[i].roomname] = msgs[i].roomname; 
-          //   app.renderRoom(msgs[i]); 
-          // }
-          //console.log(data.results);
+          app.renderMessage(msgs[i]);
         }
       },
       error: function (data) {
-        // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
         console.error('chatterbox: Failed to send message', data);
       }
     });
@@ -64,29 +63,61 @@ var app = {
   renderMessage: function(message) {
     var name = message.username; 
     var roomname = message.roomname;
+    if (!roomNameList.includes(roomname)) {
+      roomNameList.push(roomname);
+      $('.dropdown-content').append($('<a class = "roomSelected"></a>').text(roomname));
+    }
+    
 
-        
+
+
+
+    //store the roomnames
+    //add the roomnames to an html element 
     var $chatBox = $('<div class = "chat"></div>');
-    var $text = $('<div class="messageText"></div>').text(message.text);
+    var $text = $('<p class="messageText"></p>').text(message.text);
     var $username = $('<a href = "#userNameClicked" class="person"></a>').text(message.username);
+    var $friendIcon = $('<img src = "check.png" class = "friendIcon"></img>');
+    
+    if (friendList.includes(name)) {
+      $username.text().css({'font-weight': 'bold'});
+    }
+
     $chatBox.append($username);
     $chatBox.append($text);
+    $chatBox.append($friendIcon);
     $('#chats').append($chatBox); 
   }, 
   
   renderRoom: function(room) {
+    console.log('room');
     $room = $('<div></div>').text(room);
     $('#roomSelect').append($room);
   },
 
+  /* Friends */
   handleUsernameClick: function() {
-    $('.chat').on( 'click', function() {
-      var name = $(this).find('.person');
-      // var name = $(this).text();
-      console.log(name);  
 
+    $('body').on('click', '.chat', function() {
+      var friendName = $(this).text();
+//bold
+      if (!friendList.includes(friendName)) {
+        friendList.push(friendName);
+        // updateFriends();
+        $(this).css({'font-weight': 'bold'});
+      }
+      
+      var $imageNode = $(this).find('.friendIcon');
+      //add friendName to friendList
+
+      // $(this).toggleClass();
+      $imageNode.toggleClass('toggleFriend');
+      
+      
+      //toggle class FriendToggle
     });
   },
+
   handleSubmit: function() {
     $('#newPostSubmit').on('click', function() {
       var userName = $('#userNameInput').val();
@@ -96,10 +127,11 @@ var app = {
       //create the message object to pass into send(message)
 
       var message = {
-        username: 'enki',
-        text: 'trying to see what it fetches',
-        roomname: '6thfloor'
+        username: userName,
+        text: content,
+        roomname: currentRoom
       };
+      
       //post request with userName and content
       console.log('send is getting called', JSON.stringify(message));
       app.send(JSON.stringify(message));
@@ -110,18 +142,43 @@ var app = {
 
 
 $(document).ready(function() {
+  console.log('init called');
   app.init();
+  // setInterval(function() {
+  //   app.fetch();
+  // }, 3000);
   app.fetch();
-    
-
+ 
   
-
 
   // app.fetch();
   $('#createRoomButton').on('click', function() {
     //what to do when room 
-    var room = $('#newRoomName');
-    app.renderRoom(room);
+    var room = $('#newRoomName').val();
+    
+    //send a post request
+    var message = {
+      username: '',
+      text: 'created a new Room: ' + room,
+      roomname: room
+    };
+    app.send(JSON.stringify(message));
+    app.renderRoom(JSON.stringify(room));
+  });
+
+  $('.dropdown').on('click', '.roomSelected', function() {
+    console.log(this);
+    var myRoom = $(this).text();
+    currentRoom = myRoom;
+   
+    //clear the chat
+    app.clearMessages();
+    // constraint = {order: '-updatedAt', limit: 50};
+    
+    // app.fetch(constraint);
+
+    //get request with only roomname as parameter
+    
   });
   
   

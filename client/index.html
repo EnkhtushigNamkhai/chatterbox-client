@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>chatterbox</title>
     <link rel="stylesheet" href="styles/styles.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,400,600" rel="stylesheet">
     <!-- dependencies -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script>
@@ -22,46 +22,54 @@
     <script src="env/config.js"></script>
     <script src="scripts/app.js"></script>
   </head>
-  <body>
-    <div id="main">
-      <h1>Rothko's Chatterbox</h1>
 
-      <div class = "postOwnChat">
-        <h3>Chatter away</h3>
-        <label>Username:<input id="userNameInput" ></input></label>
-        <label style = "display: block">Content: <input id="contentInput"></input></label>
-        <input id = 'newPostSubmit' type = 'submit' value = 'submit'></input>
-      </div>
+  <body>
+ <!--    main start -->
+    <div id="main">
+      <h1 class = 'title' >ChatterBox</h1>
 
       <div class="dropdown">
-        <button class="dropbtn">Dropdown</button>
+        <button class="dropbtn">Choose a Room</button>
         <div class="dropdown-content">
-          <a href="#">Home</a>
         </div>
       </div>
-      
-      
 
+    
+      <!-- chat start -->
       <div id="chats">
+        <div id ="CurrentRoomName"></div>
           
       </div>
+      <!-- chat end -->
+
+      <div class = "postOwnChat">
+        <input id = 'newPostSubmit' type = 'submit' value = 'submit'></input>
+        <textarea id="contentInput" placeholder ="Post here..."></textarea>
+      </div>
+
     </div>
-    <aside class="friend">
-      <h3>Friends</h3>
-    </aside>
+   <!--    main end -->
+
+    
 
     <div class = "channelCol">
-      <h2>Rooms</h2>
-      <aside class =createRoom>
-        <label>Create a Room:<input id="newRoomName" ></input></label>
+
+      <div class="createRoom">
+        <label>Create a Room:</label>
+        <input id="newRoomName" ></input>
         <input id = 'createRoomButton' type = 'submit' value = 'submit'></input>
-      </aside>
-      <div id = "roomSelect">
-
       </div>
+
+
+      <div class="friendContainer">
+        <h3>Friends</h3>
+        <div class = "friendWrapper">
+          <ul class="friendList">
+           <!--  li of friends -->
+          </ul>
+        </div>
+      </div>
+
     </div>
-  
-
-
   </body>
 </html>

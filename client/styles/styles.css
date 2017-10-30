@@ -2,29 +2,46 @@ body {
     background: #eee;
     text-align: center;
     padding: 0 25px;
-    font-family: arial, sans-serif;
-    ba/*ckground-color: black;*/
+    /*font-family: arial, sans-serif;*/
+    font-family: 'Poppins', sans-serif;
+    /*ckground-color: black;*/
+
+}
+
+.title {
+    text-shadow: 2px 2px 2px #aaa;
+    font-family: 'Poppins', sans-serif;
+
 }
 
 #main {
     width: 70%;
     margin: auto;
-    text-align: left;
+    text-align: center;
     background: white;
     padding: 50px 60px;
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
     float:right;
-/*background-color: green;*/
     height: 100vh;
+
+
+/*background-color: green;*/
+   /* height: 80vh;*/
 }
 
 #chats {
     margin: 20px;
-    width: ;
-    height: 100%;
-    background-color: grey;
+    width: 90%;
+    height: 70%;
+    background-color: #E5EDFF;
     overflow: scroll;
+    padding: 20px;
+
+/*    border-style: solid;
+    border-color: #5E73A4;
+    border-width: 2px;
+    border-radius: 10px;*/
 }
 
 #main h1 {
@@ -72,9 +89,15 @@ form input[type=text] {
 }
 
 .chat {
-    padding: 5px;
+    padding: 20px;
     margin-bottom: 5px;
-    background-color: #eee;
+    background-color: #F7FAFF;
+    border-radius: 5px;
+    margin: 30px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+     font-family: 'Poppins', sans-serif;
+     font-weight: 200;
+    text-align: center;
     
 }
 
@@ -83,7 +106,7 @@ form input[type=text] {
 }
 
 .chat:hover {
-    background-color: #ddd;
+    background-color: #FAFAFA;
 }
 
 .spinner {
@@ -97,8 +120,8 @@ form input[type=text] {
 }
 
 .friend {
-    color: #fff;
-    background-color: #0090da;
+ /*   color: #fff;
+    background-color: #0090da;*/
 }
 
 .chatBox {
@@ -110,9 +133,22 @@ form input[type=text] {
 }
 
 .channelCol {
-    float: left;
-    width: 100px;
+/*    float: left;
+    width: 20%;
+    height: auto;
     background-color: blue;
+
+
+*/
+    width: 10%;
+    margin: auto;
+    text-align: left;
+    background: white;
+    padding: 50px 60px;
+    border: solid #ddd;
+    border-width: 0 1px 1px 1px;
+    float:left;
+    height: 100vh;
 }
 
 .friendIcon {
@@ -120,14 +156,6 @@ form input[type=text] {
     height: auto;
     visibility: hidden;
 }
-/*.friendYes {
-    visibility: visible;
-    
-}
-
-.friendNo {
-    visibility: visible;
-}*/
 
 .toggleFriend {
     visibility: visible;
@@ -166,15 +194,20 @@ form input[type=text] {
 .dropdown {
     position: relative;
     display: inline-block;
+    text-align: center;
+
 }
 
 .dropdown-content {
+    height: 200px;
+    overflow: scroll;
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+
 }
 
 .dropdown-content a {
@@ -195,3 +228,47 @@ form input[type=text] {
     background-color: #3e8e41;
 }
 
+
+
+
+
+
+
+
+.postOwnChat {
+    /*background-color: green;*/
+    margin: 20px;
+   /* text-align: center;*/
+    padding: 10px;
+}
+
+#contentInput {
+    width: 50%;
+    height: 50px;
+    float: right;
+}
+
+#newPostSubmit {
+    margin-left: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    float: right;
+}
+
+#CurrentRoomName {
+    background-color: green;
+}
+
+.addedFriends {
+}
+
+.friendWrapper {
+    background-color: #f9f9f9;
+    overflow: scroll;
+    height: 200px;
+    border-radius: 5px;
+}

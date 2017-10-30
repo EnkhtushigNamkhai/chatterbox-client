@@ -41,7 +41,7 @@ var app = {
     });
   }, 
   
-  fetch: function(constraint = {order: '-createdAt', limit: 20}) {
+  fetch: function(constraint = {order: '-createdAt', limit: 10}) {
     $.ajax({
       url: app.server,
       type: 'GET',
@@ -68,7 +68,7 @@ var app = {
         });
 
         app.renderMessages(messages);
-        app.scrollToBottom();
+        
       },
       error: function (data) {
         console.error('chatterbox: Failed to send message', data);
@@ -77,16 +77,6 @@ var app = {
   },
 
   renderMessages: function(messages) {
-    // messages = messages.filter(function(message) {
-    //   if (app.currentRoom === 'Home' && !message.roomname) {
-    //     return true;
-    //   } else if (app.currentRoom === message.roomname) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // });
-
     //if current room's chat is empty/ previous chats expired.
     if (messages.length === 0) {
       console.log("empty");
@@ -124,7 +114,7 @@ var app = {
     if (!found) {
       app.handleLastObjNotFound(messages);
     }
-
+    app.scrollToBottom();
     app.lastMessageId = mostRecentMessage.objectId;
   },
 
@@ -197,11 +187,15 @@ var app = {
     app.lastMessageId = 0;
     app.fetch();
     app.scrollToBottom();
+    $(".dropbtn").text(newRoomName);
   },
 
   /** Creates a new room **/
   handleNewRoom: function() {
     var newRoomName = $('#newRoomName').val();
+    if (newRoomName === '') {
+      newRoomName = 'Home';
+    }
     var message = {
       username: '',
       text: app.userName +' created a new Room: ' + newRoomName,
@@ -210,6 +204,7 @@ var app = {
     app.currentRoom = newRoomName;
     app.clearMessages();
     app.lastMessageId = 0;
+
     app.send(JSON.stringify(message));
     $('#newRoomName').val('');
   },
@@ -222,8 +217,17 @@ var app = {
     //some code here 
   },
 
+  //will scroll down when there are new messages.
   scrollToBottom: function() {
     $("#chats").animate({ scrollTop: $(document).height() }, "slow");
+
+    // $("#chats").on("scroll mousewheel", function(){
+    //   $("#chats").stop();
+    //  });
+
+    //  $("#chats").animate({ scrollTop: $(document).height() }, 'slow', function(){
+    //   $("#chats").off("scroll");
+    //  });
   }
 
   // /* Friends */

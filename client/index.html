@@ -26,6 +26,7 @@
   <body>
  <!--    main start -->
     <div id="main">
+
       <h1 class = 'title' >ChatterBox</h1>
 
       <div class="dropdown">
@@ -37,14 +38,13 @@
     
       <!-- chat start -->
       <div id="chats">
-        <div id ="CurrentRoomName"></div>
           
       </div>
       <!-- chat end -->
 
       <div class = "postOwnChat">
-        <input id = 'newPostSubmit' type = 'submit' value = 'submit'></input>
         <textarea id="contentInput" placeholder ="Post here..."></textarea>
+        <input id = 'newPostSubmit' class="buttonStyle" type = 'submit' value = 'submit'></input>
       </div>
 
     </div>
@@ -55,9 +55,9 @@
     <div class = "channelCol">
 
       <div class="createRoom">
-        <label>Create a Room:</label>
+        <label>New Room:</label>
         <input id="newRoomName" ></input>
-        <input id = 'createRoomButton' type = 'submit' value = 'submit'></input>
+        <input id = 'createRoomButton' class="buttonStyle" type = 'submit' value = 'submit'></input>
       </div>
 
 

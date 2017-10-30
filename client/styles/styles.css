@@ -1,7 +1,7 @@
 body {
     background: #eee;
     text-align: center;
-    padding: 0 25px;
+   /* padding: 0 25px;*/
     /*font-family: arial, sans-serif;*/
     font-family: 'Poppins', sans-serif;
     /*ckground-color: black;*/
@@ -11,11 +11,13 @@ body {
 .title {
     text-shadow: 2px 2px 2px #aaa;
     font-family: 'Poppins', sans-serif;
+    margin: 20px;
+    background-color: 
 
 }
 
 #main {
-    width: 70%;
+    width: 60%;
     margin: auto;
     text-align: center;
     background: white;
@@ -23,7 +25,7 @@ body {
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
     float:right;
-    height: 100vh;
+    height: 100%;
 
 
 /*background-color: green;*/
@@ -33,15 +35,15 @@ body {
 #chats {
     margin: 20px;
     width: 90%;
-    height: 70%;
+    height: 500px;
     background-color: #E5EDFF;
     overflow: scroll;
     padding: 20px;
 
-/*    border-style: solid;
+    border-style: solid;
     border-color: #5E73A4;
-    border-width: 2px;
-    border-radius: 10px;*/
+    border-width: 1px;
+    border-radius: 10px;
 }
 
 #main h1 {
@@ -140,11 +142,11 @@ form input[type=text] {
 
 
 */
-    width: 10%;
-    margin: auto;
+    /*width: auto;*/
+    /*margin: auto;*/
     text-align: left;
     background: white;
-    padding: 50px 60px;
+    padding: 60px 20px;
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
     float:left;
@@ -183,9 +185,9 @@ form input[type=text] {
 
 
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #5581E8;
     color: white;
-    padding: 16px;
+    padding: 20px;
     font-size: 16px;
     border: none;
     cursor: pointer;
@@ -225,7 +227,7 @@ form input[type=text] {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: #FFA74A;
 }
 
 
@@ -236,32 +238,39 @@ form input[type=text] {
 
 
 .postOwnChat {
-    /*background-color: green;*/
     margin: 20px;
    /* text-align: center;*/
     padding: 10px;
 }
 
 #contentInput {
-    width: 50%;
-    height: 50px;
-    float: right;
+    width: 80%;
+    height: 40%;
+    font-size: 20px;
+
 }
 
-#newPostSubmit {
-    margin-left: 20px;
-    background-color: #4CAF50;
+.buttonStyle {
+    /*margin-left: 20px;*/
+    background-color: #5581E8;
     color: white;
     padding: 16px;
     font-size: 16px;
     border: none;
-    cursor: pointer;
+    cursor: pointer; 
+}
+
+#newPostSubmit {
     float: right;
 }
 
-#CurrentRoomName {
-    background-color: green;
+.buttonStyle:hover {
+    background-color: #FFA74A;
 }
+
+/*#CurrentRoomName {
+    background-color: green;
+}*/
 
 .addedFriends {
 }
@@ -271,4 +280,20 @@ form input[type=text] {
     overflow: scroll;
     height: 200px;
     border-radius: 5px;
+    box-shadow: 0px 5px 6px 0px rgba(0,0,0,0.2);
+}
+
+
+.createRoom {
+    width: 100%;
+    background-color: #f9f9f9;
+    text-align: center;
+    box-shadow: 0px 5px 6px 0px rgba(0,0,0,0.2);
+
+}
+
+#newRoomName {
+    margin: 5px;
+    padding: 5px;
+    font-size: 15px;
 }
